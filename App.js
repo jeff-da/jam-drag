@@ -11,6 +11,7 @@ export default class App extends React.Component {
       endY: 0,
       magnitide: 0,
       angle: 0,
+      showCue: 0,
     }
 
     panResponder = {}
@@ -24,7 +25,7 @@ export default class App extends React.Component {
         onPanResponderTerminate: this.handlePanResponderEnd,
       })
     }
-    
+
     render() {
 
       return (
@@ -40,12 +41,13 @@ export default class App extends React.Component {
               width={Dimensions.get('window').width}
             >
               <Svg.Line
-                  x1={this.state.startX}
-                  y1={this.state.startY}
-                  x2={this.state.endX}
-                  y2={this.state.endY}
+                  x1="150"
+                  y1="300"
+                  x2={(this.state.startX - this.state.endX) / 1.5 + 150}
+                  y2={(this.state.startY - this.state.endY) / 1.5 + 300}
                   stroke="black"
                   strokeWidth="5"
+                  strokeOpacity={this.state.showCue}
               />
             </Svg>
           </View>
@@ -60,7 +62,8 @@ export default class App extends React.Component {
     handlePanResponderStart = (e, gentureState) => {
       this.setState({
         startX: gentureState.x0,
-        startY: gentureState.y0
+        startY: gentureState.y0,
+        showCue: .85
       })
     }
 
@@ -80,6 +83,7 @@ export default class App extends React.Component {
       this.setState({
         magnitude: m,
         angle: t,
+        showCue: 0
       })
     }
   }

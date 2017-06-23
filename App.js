@@ -30,9 +30,6 @@ export default class App extends React.Component {
 
       return (
         <View style={styles.container}>
-          <View>
-                <Text>Magnitude of last move: {this.state.magnitude} Angle of last move: {this.state.angle}</Text>
-          </View>
           <View
             {...this.panResponder.panHandlers}
           >
@@ -77,12 +74,12 @@ export default class App extends React.Component {
     }
 
     handlePanResponderEnd = (e, gestureState) => {
-      var m = Math.sqrt(Math.pow(this.state.endX - this.state.startX, 2) +
+      var magnitude = Math.sqrt(Math.pow(this.state.endX - this.state.startX, 2) +
                         Math.pow(this.state.endY - this.state.startY, 2));
-      var t = Math.atan2(this.state.endY - this.state.startY, this.state.endX - this.state.startX);
+      var angle = Math.atan2(this.state.endY - this.state.startY, this.state.endX - this.state.startX);
       this.setState({
-        magnitude: m,
-        angle: t,
+        magnitude,
+        angle,
         showCue: 0
       })
     }

@@ -45,6 +45,7 @@ export default class App extends React.Component {
                   stroke="black"
                   strokeWidth="5"
                   strokeOpacity={this.state.showCue}
+                  strokeDasharray={[5.2,5.2]}
               />
             </Svg>
           </View>
@@ -56,10 +57,12 @@ export default class App extends React.Component {
       return true
     }
 
-    handlePanResponderStart = (e, gentureState) => {
+    handlePanResponderStart = (e, gestureState) => {
       this.setState({
-        startX: gentureState.x0,
-        startY: gentureState.y0,
+        startX: gestureState.x0,
+        startY: gestureState.y0,
+        endX: gestureState.x0,
+        endY: gestureState.y0,
         showCue: .85
       })
     }

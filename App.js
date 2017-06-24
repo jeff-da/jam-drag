@@ -63,7 +63,7 @@ export default class App extends React.Component {
         startY: gestureState.y0,
         endX: gestureState.x0,
         endY: gestureState.y0,
-        showCue: .85
+        showCue: .15
       })
     }
 
@@ -73,6 +73,7 @@ export default class App extends React.Component {
         offsetLeft: gestureState.dx,
         endX: gestureState.moveX,
         endY: gestureState.moveY,
+        showCue: .15 + ((gestureState.dy + gestureState.dy) / 1000) * .7
       })
     }
 
